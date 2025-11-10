@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicEventHub - Управління концертами та орендою інструментів</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<!-- Навігація -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">
+      <img src="../img/logo.png" alt="Between Lines Logo" class="navbar-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Головна</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Концерти</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Інструменти</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Локації</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">Про нас</a>
+        </li>
+      </ul>
+      <div class="navbar-nav">
+        <a class="nav-link btn-login" href="#">Увійти</a>
+        <a class="nav-link" href="../html/registration.html">Реєстрація</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Карусель -->
+<section class="hero-carousel">
+  <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../img/welcome_img.jpg"
+             class="d-block w-100 carousel-image"
+             alt="Between Lines концерт">
+        <div class="carousel-caption">
+          <h2>Between Lines Live</h2>
+          <p>Відчуй магію живого звуку</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Івент ліст -->
+<section class="events-section py-5">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col">
+        <h2 class="section-title text-center">Найближчі події</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="events-list">
+          <!-- Подія 1 -->
+          <a href="event.html?id=1" class="event-item">
+            <div class="event-date">
+              <span class="event-day">15</span>
+              <span class="event-month">ГРУД</span>
+            </div>
+            <div class="event-info">
+              <h4 class="event-title">Between Lines: Winter Vibes</h4>
+              <p class="event-location">🎵 Музичний бар "Хата", Київ</p>
+            </div>
+            <div class="event-time">20:00</div>
+          </a>
+
+          <!-- Подія 2 -->
+          <a href="event.html?id=2" class="event-item">
+            <div class="event-date">
+              <span class="event-day">22</span>
+              <span class="event-month">ГРУД</span>
+            </div>
+            <div class="event-info">
+              <h4 class="event-title">Between Lines: Acoustic Evening</h4>
+              <p class="event-location">🎵 Арт-кав'ярня "Подія", Львів</p>
+            </div>
+            <div class="event-time">19:30</div>
+          </a>
+
+          <!-- Подія 3 -->
+          <a href="event.html?id=3" class="event-item">
+            <div class="event-date">
+              <span class="event-day">29</span>
+              <span class="event-month">ГРУД</span>
+            </div>
+            <div class="event-info">
+              <h4 class="event-title">New Year's Eve with Between Lines</h4>
+              <p class="event-location">🎵 Клуб "Атмосфера", Одеса</p>
+            </div>
+            <div class="event-time">22:00</div>
+          </a>
+
+          <!-- Подія 4 -->
+          <a href="event.html?id=4" class="event-item">
+            <div class="event-date">
+              <span class="event-day">12</span>
+              <span class="event-month">СІЧ</span>
+            </div>
+            <div class="event-info">
+              <h4 class="event-title">Between Lines: First Light</h4>
+              <p class="event-location">🎵 Концерт-хол "Міст", Харків</p>
+            </div>
+            <div class="event-time">18:00</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Секція про групу -->
+<section id="about" class="band-section py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h2 class="section-title">Between Lines</h2>
+        <div class="band-description">
+          <p class="lead">👋 <strong>Привіт!</strong></p>
+          <p>Ми — музична група, яка тільки починає свій шлях. Поки що ми кавер-бенд — виконуємо пісні, які нам самим близькі, які ми відчуваємо. Але це лише початок.</p>
+
+          <p>Ми готуємося до власної музики — тієї, що народиться з досвіду, моментів і тиші між словами.</p>
+
+          <p>Ми зібралися цього літа, і відтоді зрозуміли: хочемо більшого. Хочемо створювати, ділитися, звучати — і бути почутими. Не просто грати, а будувати атмосферу, в якій хочеться залишитися.</p>
+
+          <div class="band-highlights">
+            <div class="highlight-item">
+              <span class="highlight-icon">🎧</span>
+              <span>Репетиції та бекстейдж</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">📣</span>
+              <span>Анонси виступів</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">🎬</span>
+              <span>Живі кадри зсередини процесу</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">🎶</span>
+              <span>Перші нотатки майбутніх пісень</span>
+            </div>
+          </div>
+
+          <p class="band-quote">"Ми ще не знаємо точно, куди веде цей шлях,<br>але вже відчуваємо, що йдемо не дарма."</p>
+
+          <p class="band-signature">Ваші Between Lines. ❤️</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Футер -->
+<footer class="custom-footer py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>MusicEventHub</h5>
+        <p>Ваш надійний партнер у світі музичних подій</p>
+      </div>
+      <div class="col-md-3">
+        <h6>Навігація</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">Головна</a></li>
+          <li><a href="#">Концерти</a></li>
+          <li><a href="#">Інструменти</a></li>
+          <li><a href="#">Локації</a></li>
+          <li><a href="#about">Про нас</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Контакти</h6>
+        <ul class="list-unstyled">
+          <li>📧 info@musiceventhub.com</li>
+          <li>📞 +380 (XX) XXX-XX-XX</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>&copy; 2024 MusicEventHub. Всі права захищені.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

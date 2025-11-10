@@ -1,0 +1,519 @@
+/* Навігація - Фіолетова тема */
+.custom-navbar {
+  background: linear-gradient(135deg, #6a0dad 0%, #8a2be2 100%) !important;
+  border-bottom: none;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 10px rgba(106, 13, 173, 0.3);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  color: #ffffff !important;
+  font-weight: 700;
+  margin-right: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 40px;
+  width: auto;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* Вирівнювання навігації */
+.navbar-nav.me-auto {
+  margin-left: 2rem;
+}
+
+.nav-link {
+  color: #ffffff !important;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff !important;
+}
+
+/* Кнопки входу/реєстрації */
+.btn-login {
+  background: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  padding: 0.5rem 1.5rem !important;
+  margin-right: 0.5rem;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-login:hover {
+  background: #ffffff;
+  color: #6a0dad !important;
+  transform: translateY(-1px);
+}
+
+.btn-register {
+  background: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  padding: 0.5rem 1.5rem !important;
+  color: #6a0dad !important;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-register:hover {
+  background: transparent;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* Футер - Фіолетова тема */
+.custom-footer {
+  background: linear-gradient(135deg, #6a0dad 0%, #8a2be2 100%);
+  border-top: none;
+  padding: 3rem 0 2rem;
+  color: #ffffff;
+}
+
+.custom-footer h5 {
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.custom-footer h6 {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.custom-footer p,
+.custom-footer li {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.custom-footer a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.custom-footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.custom-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+.custom-footer hr {
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 2rem 0;
+}
+
+/* Карусель */
+.hero-carousel {
+  margin-bottom: 0;
+}
+
+.carousel-image {
+  height: 70vh;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.carousel-caption {
+  bottom: 50%;
+  transform: translateY(50%);
+}
+
+.carousel-caption h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.carousel-caption p {
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+/* Івент ліст */
+.events-section {
+  background-color: #0a0a0a;
+}
+
+.events-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.event-item {
+  display: flex;
+  align-items: center;
+  background: #2d2d2d;
+  border: 1px solid #404040;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.event-item:hover {
+  transform: translateY(-3px);
+  border-color: #8a2be2;
+  box-shadow: 0 5px 20px rgba(138, 43, 226, 0.2);
+  color: inherit;
+  text-decoration: none;
+}
+
+.event-date {
+  text-align: center;
+  background: #8a2be2;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  min-width: 80px;
+  margin-right: 1.5rem;
+}
+
+.event-day {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.event-month {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+}
+
+.event-info {
+  flex: 1;
+}
+
+.event-title {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+.event-location {
+  color: #b0b0b0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.event-time {
+  background: #404040;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Секція про групу */
+.band-section {
+  background-color: #1a1a1a;
+}
+
+.band-description p {
+  color: #b0b0b0;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.band-description .lead {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.band-highlights {
+  margin: 2rem 0;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: #b0b0b0;
+}
+
+.highlight-icon {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  min-width: 30px;
+}
+
+.band-quote {
+  font-style: italic;
+  text-align: center;
+  color: #8a2be2 !important;
+  font-size: 1.1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  border-left: 3px solid #8a2be2;
+  background: rgba(138, 43, 226, 0.1);
+}
+
+.band-signature {
+  text-align: right;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.band-image-placeholder {
+  background: #2d2d2d;
+  border: 2px dashed #404040;
+  border-radius: 15px;
+  padding: 3rem 2rem;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-notes {
+  font-size: 4rem;
+  opacity: 0.7;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .carousel-caption h2 {
+    font-size: 2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.2rem;
+  }
+
+  .carousel-image {
+    height: 50vh;
+  }
+
+  .event-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .event-date {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .event-time {
+    margin-top: 1rem;
+  }
+
+  .band-image-placeholder {
+    height: 300px;
+    margin-top: 2rem;
+  }
+
+  .music-notes {
+    font-size: 3rem;
+  }
+
+  .navbar-nav.me-auto {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .btn-login,
+  .btn-register {
+    margin: 0.25rem 0;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/*register form*/
+/* Стилі для сторінки реєстрації */
+.register-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+}
+
+.register-card {
+  background: #2d2d2d;
+  border: 1px solid #404040;
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.register-title {
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.register-subtitle {
+  color: #b0b0b0;
+  margin-bottom: 0;
+}
+
+.custom-input {
+  background: #1a1a1a;
+  border: 1px solid #404040;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+.custom-input:focus {
+  background: #1a1a1a;
+  border-color: #8a2be2;
+  color: #ffffff;
+  box-shadow: 0 0 0 0.2rem rgba(138, 43, 226, 0.25);
+}
+
+.form-label {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-text {
+  color: #b0b0b0 !important;
+}
+
+.form-check-label {
+  color: #ffffff;
+}
+
+.form-check-input {
+  background-color: #1a1a1a;
+  border: 1px solid #404040;
+}
+
+.form-check-input:checked {
+  background-color: #8a2be2;
+  border-color: #8a2be2;
+}
+
+.account-type-info {
+  background: #1a1a1a;
+  border: 1px solid #404040;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.account-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.text-accent {
+  color: #8a2be2 !important;
+  text-decoration: none;
+}
+
+.text-accent:hover {
+  color: #9d4eff !important;
+  text-decoration: underline;
+}
+
+/* Стилі для сповіщень */
+.custom-alert {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 9999;
+  min-width: 300px;
+}
+
+/* Адаптивність для реєстрації */
+@media (max-width: 768px) {
+  .register-card {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+
+  .register-section {
+    padding: 2rem 0;
+  }
+}
+
+/* Стилі для placeholder-ів */
+.custom-input::placeholder {
+  color: #b0b0b0 !important;
+  opacity: 1;
+}
+
+.custom-input::-webkit-input-placeholder {
+  color: #b0b0b0 !important;
+}
+
+.custom-input::-moz-placeholder {
+  color: #b0b0b0 !important;
+  opacity: 1;
+}
+
+.custom-input:-ms-input-placeholder {
+  color: #b0b0b0 !important;
+}
+
+.custom-input:-moz-placeholder {
+  color: #b0b0b0 !important;
+  opacity: 1;
+}
+
+/* Додаткові стилі для кращої видимості тексту в інпутах */
+.custom-input {
+  color: #ffffff !important;
+}
+
+.custom-input:focus {
+  color: #ffffff !important;
+}
+/* Стилі для тексту під кнопкою реєстрації */
+.register-section .text-center p {
+  color: #b0b0b0 !important;
+}
+
+.register-section .text-center a {
+  color: #8a2be2 !important;
+}
+
+.register-section .text-center a:hover {
+  color: #9d4eff !important;
+  text-decoration: underline;
+}
