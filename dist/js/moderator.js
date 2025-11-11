@@ -1,6 +1,10 @@
 import { db } from './firebase-config.js';
 import {
-  collection, getDocs, doc, getDoc, updateDoc
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
 const rentalsTable = document.querySelector("#rentalsTable tbody");
@@ -14,7 +18,7 @@ async function loadRentals() {
     rentalsTable.innerHTML = "";
 
     if (snapshot.empty) {
-      rentalsTable.innerHTML = `<tr><td colspan="8" class="text-muted">Немає активних заявок.</td></tr>`;
+      rentalsTable.innerHTML = `<tr><td colspan="9" class="text-muted">Немає активних заявок.</td></tr>`;
       return;
     }
 
@@ -22,15 +26,30 @@ async function loadRentals() {
     for (const docSnap of snapshot.docs) {
       const rental = docSnap.data();
 
-      // Отримуємо назву інструменту
+      // --- Отримуємо назву інструменту ---
       const instrumentDoc = await getDoc(doc(db, "instruments", rental.instrumentId));
       const instrumentName = instrumentDoc.exists() ? instrumentDoc.data().name : "—";
 
+      // --- Отримуємо інформацію про користувача ---
+      let userEmail = "—";
+      let userPhone = "—";
+
+      if (rental.userId) {
+        const userDoc = await getDoc(doc(db, "users", rental.userId));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          userEmail = userData.email || "—";
+          userPhone = userData.phoneNumber || "—"; // поле phoneNumber
+        }
+      }
+
+      // --- Формуємо рядок таблиці ---
       const row = document.createElement("tr");
       row.innerHTML = `
         <td>${index++}</td>
         <td>${instrumentName}</td>
-        <td>${rental.userId}</td>
+        <td>${userEmail}</td>
+        <td>${userPhone}</td>
         <td>${formatDate(rental.startDate)}</td>
         <td>${formatDate(rental.endDate)}</td>
         <td>${rental.totalPrice}</td>
@@ -40,7 +59,9 @@ async function loadRentals() {
           </span>
         </td>
         <td>
-          <select class="form-select form-select-sm status-select" data-id="${rental.rentalId}" data-instrument="${rental.instrumentId}">
+          <select class="form-select form-select-sm status-select"
+                  data-id="${rental.rentalId}"
+                  data-instrument="${rental.instrumentId}">
             <option value="Орендовано" ${rental.status === "Орендовано" ? "selected" : ""}>Орендовано</option>
             <option value="Доступно" ${rental.status === "Доступно" ? "selected" : ""}>Доступно</option>
           </select>
@@ -53,7 +74,7 @@ async function loadRentals() {
 
   } catch (error) {
     console.error("❌ Помилка при завантаженні оренд:", error);
-    rentalsTable.innerHTML = `<tr><td colspan="8" class="text-danger">Не вдалося завантажити заявки.</td></tr>`;
+    rentalsTable.innerHTML = `<tr><td colspan="9" class="text-danger">Не вдалося завантажити заявки.</td></tr>`;
   }
 }
 
@@ -80,7 +101,7 @@ function addListeners() {
         // Оновлення статусу в rentals
         await updateDoc(doc(db, "rentals", rentalId), { status: newStatus });
 
-        // Якщо статус “Доступно” — оновлюємо інструмент
+        // Оновлення статусу інструмента
         if (newStatus === "Доступно") {
           await updateDoc(doc(db, "instruments", instrumentId), { status: "Доступно" });
         } else {
