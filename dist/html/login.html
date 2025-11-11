@@ -24,49 +24,30 @@
         <li class="nav-item">
           <a class="nav-link" href="../html/home.html">Головна</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Концерти</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Інструменти</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Локації</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../index.html#about">Про нас</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="#">Концерти</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Інструменти</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Локації</a></li>
+        <li class="nav-item"><a class="nav-link" href="../index.html#about">Про нас</a></li>
       </ul>
       <div class="navbar-nav">
-        <a class="nav-link btn-login" href="registration.html">Зарееструйтесь</a>
+        <a class="nav-link btn-login" href="registration.html">Зареєструйтесь</a>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- Секція реєстрації -->
-<section class="register-section py-5">
+<!-- Секція логіну -->
+<section class="login-section py-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-5">
-        <div class="register-card">
-          <div class="register-header text-center mb-4">
-            <h2 class="register-title">Війдіть в обліковий запис</h2>
-            <p class="register-subtitle">Раді бачити вас знову</p>
+        <div class="login-card">
+          <div class="login-header text-center mb-4">
+            <h2 class="login-title">Війдіть в обліковий запис</h2>
+            <p class="login-subtitle">Раді бачити вас знову</p>
           </div>
 
-          <form id="registerForm">
-            <!-- Ім'я користувача -->
-            <div class="mb-3">
-              <label for="displayName" class="form-label">Ім'я користувача *</label>
-              <input type="text"
-                     class="form-control custom-input"
-                     id="displayName"
-                     name="displayName"
-                     required
-                     placeholder="Введіть ваше ім'я">
-            </div>
-
+          <form id="loginForm">
             <!-- Email -->
             <div class="mb-3">
               <label for="email" class="form-label">Email адреса *</label>
@@ -76,16 +57,6 @@
                      name="email"
                      required
                      placeholder="your@email.com">
-            </div>
-
-            <!-- Телефон -->
-            <div class="mb-3">
-              <label for="phoneNumber" class="form-label">Номер телефону</label>
-              <input type="tel"
-                     class="form-control custom-input"
-                     id="phoneNumber"
-                     name="phoneNumber"
-                     placeholder="+380 (XX) XXX-XX-XX">
             </div>
 
             <!-- Пароль -->
@@ -98,14 +69,9 @@
                      required
                      placeholder="Введіть пароль">
             </div>
-            <!-- Приховане поле для ролі -->
-            <input type="hidden" name="role" value="user">
 
-
-            <!-- Кнопка реєстрації -->
-            <button type="submit" class="btn btn-primary w-100 mb-3">
-              Увійти
-            </button>
+            <!-- Кнопка логіну -->
+            <button type="submit" class="btn btn-primary w-100 mb-3">Увійти</button>
           </form>
         </div>
       </div>
@@ -124,7 +90,7 @@
       <div class="col-md-3">
         <h6>Навігація</h6>
         <ul class="list-unstyled">
-          <li><a href="../index.html">Головна</a></li>
+          <li><a href="../html/home.html">Головна</a></li>
           <li><a href="#">Концерти</a></li>
           <li><a href="#">Інструменти</a></li>
           <li><a href="#">Локації</a></li>
@@ -152,12 +118,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js"></script>
 
 <!-- Ваші скрипти -->
-<script src="../js/firebase-config.js"></script>
-<script src="../js/register.js"></script>
+<script type="module" src="../js/firebase-config.js"></script>
+<script type="module" src="../js/login.js"></script>
 </body>
 </html>

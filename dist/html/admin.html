@@ -23,7 +23,13 @@
       <div class="row g-2 mt-2">
         <div class="col"><input id="instrumentCategory" class="form-control" placeholder="Категорія"></div>
         <div class="col"><input id="instrumentPrice" class="form-control" placeholder="Ціна/день"></div>
-        <div class="col"><input id="instrumentStatus" class="form-control" placeholder="Статус"></div>
+        <div class="col">
+          <select id="instrumentStatus" class="form-control">
+            <option value="Доступно" selected>Доступно</option>
+            <option value="Орендовано">Орендовано</option>
+            <option value="Не доступно">Не доступно</option>
+          </select>
+        </div>
       </div>
       <div class="mt-2"><input id="instrumentDescription" class="form-control" placeholder="Опис"></div>
       <div class="mt-2"><input id="instrumentImages" class="form-control" placeholder="URL зображень через кому"></div>

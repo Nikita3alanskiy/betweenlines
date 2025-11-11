@@ -1,14 +1,23 @@
+// ======================
+// admin.js
+// ======================
+
 // Firebase модулі
 import { auth, db } from "./firebase-config.js";
 import {
   collection, doc, setDoc, getDoc, getDocs, deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
+// ======================
+// Змінні для редагування
+// ======================
 let editInstrumentId = null;
 let editLocationId = null;
 let editConcertId = null;
 
-// ===================== Instruments =====================
+// ======================
+// Інструменти
+// ======================
 const instrumentForm = document.getElementById("instrumentForm");
 const instrumentsTable = document.querySelector("#instrumentsTable tbody");
 
@@ -19,8 +28,12 @@ async function refreshInstruments() {
     const d = docSnap.data();
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${d.name}</td><td>${d.brand}</td><td>${d.model}</td><td>${d.category}</td>
-      <td>${d.pricePerDay}</td><td>${d.status}</td>
+      <td>${d.name}</td>
+      <td>${d.brand}</td>
+      <td>${d.model}</td>
+      <td>${d.category}</td>
+      <td>${d.pricePerDay}</td>
+      <td>${d.status || "Доступно"}</td>
       <td>
         <button class="btn btn-sm btn-warning" onclick="editInstrument('${d.instrumentId}')">Редагувати</button>
         <button class="btn btn-sm btn-danger" onclick="deleteInstrument('${d.instrumentId}')">Видалити</button>
@@ -40,18 +53,18 @@ window.editInstrument = async function(id) {
   document.getElementById("instrumentCategory").value = d.category;
   document.getElementById("instrumentDescription").value = d.description;
   document.getElementById("instrumentPrice").value = d.pricePerDay;
-  document.getElementById("instrumentStatus").value = d.status;
+  document.getElementById("instrumentStatus").value = d.status || "Доступно";
   document.getElementById("instrumentImages").value = d.images.join(", ");
   editInstrumentId = id;
   instrumentForm.querySelector("button").textContent = "Оновити інструмент";
-}
+};
 
 window.deleteInstrument = async function(id) {
   if (confirm("Видалити інструмент?")) {
     await deleteDoc(doc(db, "instruments", id));
     refreshInstruments();
   }
-}
+};
 
 instrumentForm.addEventListener("submit", async e => {
   e.preventDefault();
@@ -63,8 +76,10 @@ instrumentForm.addEventListener("submit", async e => {
     category: document.getElementById("instrumentCategory").value,
     description: document.getElementById("instrumentDescription").value,
     pricePerDay: document.getElementById("instrumentPrice").value,
-    status: document.getElementById("instrumentStatus").value,
-    images: document.getElementById("instrumentImages").value.split(",").map(i => i.trim())
+    status: document.getElementById("instrumentStatus").value || "Доступно",
+    images: document.getElementById("instrumentImages").value
+      .split(",")
+      .map(i => i.trim())
   };
   await setDoc(doc(db, "instruments", data.instrumentId), data);
   instrumentForm.reset();
@@ -73,7 +88,9 @@ instrumentForm.addEventListener("submit", async e => {
   refreshInstruments();
 });
 
-// ===================== Locations =====================
+// ======================
+// Локації
+// ======================
 const locationForm = document.getElementById("locationForm");
 const locationsTable = document.querySelector("#locationsTable tbody");
 const concertLocationSelect = document.getElementById("concertLocation");
@@ -86,7 +103,10 @@ async function refreshLocations() {
     const d = docSnap.data();
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${d.name}</td><td>${d.address}</td><td>${d.city}</td><td>${d.coordinates}</td>
+      <td>${d.name}</td>
+      <td>${d.address}</td>
+      <td>${d.city}</td>
+      <td>${d.coordinates}</td>
       <td>
         <button class="btn btn-sm btn-warning" onclick="editLocation('${d.locationId}')">Редагувати</button>
         <button class="btn btn-sm btn-danger" onclick="deleteLocation('${d.locationId}')">Видалити</button>
@@ -110,14 +130,14 @@ window.editLocation = async function(id) {
   document.getElementById("locationCoordinates").value = d.coordinates;
   editLocationId = id;
   locationForm.querySelector("button").textContent = "Оновити локацію";
-}
+};
 
 window.deleteLocation = async function(id) {
   if (confirm("Видалити локацію?")) {
     await deleteDoc(doc(db, "locations", id));
     refreshLocations();
   }
-}
+};
 
 locationForm.addEventListener("submit", async e => {
   e.preventDefault();
@@ -135,7 +155,9 @@ locationForm.addEventListener("submit", async e => {
   refreshLocations();
 });
 
-// ===================== Concerts =====================
+// ======================
+// Концерти
+// ======================
 const concertForm = document.getElementById("concertForm");
 const concertsTable = document.querySelector("#concertsTable tbody");
 
@@ -144,10 +166,13 @@ async function refreshConcerts() {
   const snapshot = await getDocs(collection(db, "concerts"));
   snapshot.forEach(docSnap => {
     const d = docSnap.data();
-    const row = document.createElement("tr");
     const locationName = concertLocationSelect.querySelector(`option[value="${d.locationId}"]`)?.textContent || "";
+    const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${d.title}</td><td>${d.description}</td><td>${d.dateTime}</td><td>${locationName}</td>
+      <td>${d.title}</td>
+      <td>${d.description}</td>
+      <td>${d.dateTime}</td>
+      <td>${locationName}</td>
       <td>
         <button class="btn btn-sm btn-warning" onclick="editConcert('${d.concertId}')">Редагувати</button>
         <button class="btn btn-sm btn-danger" onclick="deleteConcert('${d.concertId}')">Видалити</button>
@@ -168,14 +193,14 @@ window.editConcert = async function(id) {
   document.getElementById("concertLocation").value = d.locationId;
   editConcertId = id;
   concertForm.querySelector("button").textContent = "Оновити концерт";
-}
+};
 
 window.deleteConcert = async function(id) {
   if (confirm("Видалити концерт?")) {
     await deleteDoc(doc(db, "concerts", id));
     refreshConcerts();
   }
-}
+};
 
 concertForm.addEventListener("submit", async e => {
   e.preventDefault();
@@ -194,7 +219,9 @@ concertForm.addEventListener("submit", async e => {
   refreshConcerts();
 });
 
-// ===================== INIT =====================
+// ======================
+// INIT
+// ======================
 refreshInstruments();
 refreshLocations();
 refreshConcerts();
