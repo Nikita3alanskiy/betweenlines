@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicEventHub - Оренда інструментів</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/instruments.css">
+  <style>
+    .cart-btn {
+      position: relative;
+    }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+    .instrument-card img {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+<!-- Навігація -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="../html/home.html">
+      <img src="../img/logo.png" alt="Between Lines Logo" class="navbar-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="../html/home.html">Головна</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">Інструменти</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Концерти</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Локації</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">Про нас</a></li>
+      </ul>
+      <div class="navbar-nav">
+        <button class="btn btn-outline-light cart-btn">
+          🛒 Корзина <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Секція інструментів -->
+<section class="instruments-section py-5">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col">
+        <h2 class="section-title text-center">Оренда інструментів</h2>
+      </div>
+    </div>
+    <div class="row" id="instrumentsContainer">
+      <!-- Тут будуть картки інструментів -->
+    </div>
+  </div>
+</section>
+
+<!-- Футер -->
+<footer class="custom-footer py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>MusicEventHub</h5>
+        <p>Ваш надійний партнер у світі музичних подій</p>
+      </div>
+      <div class="col-md-3">
+        <h6>Навігація</h6>
+        <ul class="list-unstyled">
+          <li><a href="../html/home.html">Головна</a></li>
+          <li><a href="#">Концерти</a></li>
+          <li><a href="#">Інструменти</a></li>
+          <li><a href="#">Локації</a></li>
+          <li><a href="#about">Про нас</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Контакти</h6>
+        <ul class="list-unstyled">
+          <li>📧 info@musiceventhub.com</li>
+          <li>📞 +380 (XX) XXX-XX-XX</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>&copy; 2024 MusicEventHub. Всі права захищені.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Firebase SDK (модульні імпорти робимо у instruments.js) -->
+<script type="module" src="../js/instruments.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
