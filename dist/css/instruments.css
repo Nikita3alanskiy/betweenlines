@@ -1,0 +1,108 @@
+/* ============================= */
+/* Контейнер для інструментів */
+/* ============================= */
+#instrumentsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* ============================= */
+/* Картки інструментів */
+/* ============================= */
+.instrument-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.instrument-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.instrument-card img {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.instrument-card .card-body {
+  padding: 15px;
+}
+
+.instrument-card .card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.instrument-card .card-text {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.instrument-card .btn {
+  font-weight: 500;
+}
+
+/* ============================= */
+/* Корзина зверху справа */
+/* ============================= */
+#cartContainer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#cartContainer span {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #007bff;
+}
+
+/* ============================= */
+/* Повідомлення alert для сторінки */
+/* ============================= */
+.instrument-alert {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 9999;
+  min-width: 250px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 500;
+  animation: slideIn 0.3s ease forwards;
+}
+
+.instrument-alert.success {
+  background-color: #28a745;
+}
+
+.instrument-alert.error {
+  background-color: #dc3545;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
