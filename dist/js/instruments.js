@@ -93,12 +93,25 @@ window.openRentalModal = async function(instrumentId) {
 };
 
 // ======================
-// Розрахунок суми оренди
+// Розрахунок суми оренди (з перевіркою дат)
 // ======================
 function calculateTotalPrice() {
-  const start = new Date(document.getElementById("rentalStartDate").value);
-  const end = new Date(document.getElementById("rentalEndDate").value);
-  if (!start || !end || !currentInstrument) return 0;
+  const startInput = document.getElementById("rentalStartDate");
+  const endInput = document.getElementById("rentalEndDate");
+  const start = new Date(startInput.value);
+  const end = new Date(endInput.value);
+
+  // Перевірка, чи вибрано обидві дати
+  if (startInput.value && endInput.value) {
+    if (start > end) {
+      alert("❌ Дата початку не може бути пізніше за дату завершення!");
+      endInput.value = ""; // очищаємо некоректну дату
+      document.getElementById("rentalTotalPrice").textContent = "0";
+      return 0;
+    }
+  }
+
+  if (!startInput.value || !endInput.value || !currentInstrument) return 0;
 
   // Кількість днів включно з першим днем
   const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
@@ -139,7 +152,7 @@ document.getElementById("confirmRentalBtn").addEventListener("click", async () =
       startDate: new Date(startDate),
       endDate: new Date(endDate),
       totalPrice,
-      status: "Орендовано"
+      status: "Не доступно"
     });
 
     // 2️⃣ Оновлюємо статус інструменту у базі

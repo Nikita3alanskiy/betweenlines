@@ -4,7 +4,8 @@ import {
   getDocs,
   doc,
   getDoc,
-  updateDoc
+  updateDoc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
 const rentalsTable = document.querySelector("#rentalsTable tbody");
@@ -39,7 +40,7 @@ async function loadRentals() {
         if (userDoc.exists()) {
           const userData = userDoc.data();
           userEmail = userData.email || "—";
-          userPhone = userData.phoneNumber || "—"; // поле phoneNumber
+          userPhone = userData.phoneNumber || "—";
         }
       }
 
@@ -54,15 +55,22 @@ async function loadRentals() {
         <td>${formatDate(rental.endDate)}</td>
         <td>${rental.totalPrice}</td>
         <td>
-          <span class="badge ${rental.status === "Орендовано" ? "bg-warning text-dark" : "bg-success"}">
+          <span class="badge ${
+        rental.status === "Орендовано"
+          ? "bg-warning text-dark"
+          : rental.status === "Не доступно"
+            ? "bg-secondary"
+            : "bg-success"
+      }">
             ${rental.status}
           </span>
         </td>
-        <td>
-          <select class="form-select form-select-sm status-select"
+        <td class="text-center">
+          <select class="form-select form-select-sm status-select w-auto"
                   data-id="${rental.rentalId}"
                   data-instrument="${rental.instrumentId}">
             <option value="Орендовано" ${rental.status === "Орендовано" ? "selected" : ""}>Орендовано</option>
+            <option value="Не доступно" ${rental.status === "Не доступно" ? "selected" : ""}>Не доступно</option>
             <option value="Доступно" ${rental.status === "Доступно" ? "selected" : ""}>Доступно</option>
           </select>
         </td>
@@ -88,7 +96,7 @@ function formatDate(dateObj) {
 }
 
 // =============================
-// Обробник зміни статусу
+// Обробники подій
 // =============================
 function addListeners() {
   document.querySelectorAll(".status-select").forEach(select => {
@@ -98,21 +106,24 @@ function addListeners() {
       const newStatus = e.target.value;
 
       try {
-        // Оновлення статусу в rentals
-        await updateDoc(doc(db, "rentals", rentalId), { status: newStatus });
-
-        // Оновлення статусу інструмента
         if (newStatus === "Доступно") {
+          // Якщо інструмент знову доступний — видаляємо заявку
+          await deleteDoc(doc(db, "rentals", rentalId));
           await updateDoc(doc(db, "instruments", instrumentId), { status: "Доступно" });
+          alert("✅ Заявку видалено, інструмент знову доступний!");
         } else {
-          await updateDoc(doc(db, "instruments", instrumentId), { status: "Не доступно" });
+          // Інакше просто оновлюємо статус оренди й інструмента
+          await updateDoc(doc(db, "rentals", rentalId), { status: newStatus });
+          await updateDoc(doc(db, "instruments", instrumentId), {
+            status: newStatus === "Не доступно" ? "Не доступно" : "Орендовано"
+          });
+          alert(`✅ Статус оновлено на "${newStatus}"`);
         }
 
-        alert(`✅ Статус оренди оновлено на "${newStatus}"`);
         loadRentals();
 
       } catch (error) {
-        console.error("❌ Помилка при оновленні статусу:", error);
+        console.error("❌ Помилка при оновленні:", error);
         alert("Не вдалося оновити статус. Спробуйте пізніше.");
       }
     });
