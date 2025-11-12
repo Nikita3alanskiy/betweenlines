@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   container.innerHTML = '<p class="text-center text-muted">Завантаження подій...</p>';
 
   try {
-    // Отримуємо колекцію "concerts"
     const concertsCol = collection(db, 'concerts');
     const querySnapshot = await getDocs(concertsCol);
 
@@ -19,27 +18,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const monthNames = ['СІЧ','ЛЮТ','БЕР','КВІТ','ТРАВ','ЧЕРВ','ЛИП','СЕРП','ВЕР','ЖОВТ','ЛИСТ','ГРУД'];
+    const today = new Date();
 
+    // Перетворюємо документи у масив об’єктів з датою
+    const concertsArray = [];
     for (const docSnap of querySnapshot.docs) {
       const data = docSnap.data();
-      const concertId = docSnap.id;
-
-      // Розбираємо дату та час
       const dateObj = new Date(data.dateTime);
+      concertsArray.push({ id: docSnap.id, data, dateObj });
+    }
+
+    // Фільтруємо лише майбутні події і сортуємо за датою
+    const upcomingConcerts = concertsArray
+      .filter(c => c.dateObj >= today)
+      .sort((a, b) => a.dateObj - b.dateObj)
+      .slice(0, 4); // максимум 4 події
+
+    for (const concert of upcomingConcerts) {
+      const { id, data, dateObj } = concert;
+
       const day = dateObj.getDate().toString().padStart(2, '0');
       const month = monthNames[dateObj.getMonth()];
       const time = dateObj.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
 
-      // Отримуємо назву локації, якщо є locationId
       let locationName = 'Невідома локація';
       if (data.locationId) {
         const locDoc = await getDoc(doc(db, 'locations', data.locationId));
         if (locDoc.exists()) locationName = locDoc.data().name || locationName;
       }
 
-      // HTML для однієї події
       const eventHTML = `
-        <a href="event.html?id=${concertId}" class="event-item">
+        <a href="event.html?id=${id}" class="event-item">
           <div class="event-date">
             <span class="event-day">${day}</span>
             <span class="event-month">${month}</span>
@@ -53,6 +62,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       `;
 
       container.innerHTML += eventHTML;
+    }
+
+    if (upcomingConcerts.length === 0) {
+      container.innerHTML = '<p class="text-center text-muted">Поки що немає майбутніх концертів.</p>';
     }
 
   } catch (error) {

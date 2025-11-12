@@ -517,3 +517,10 @@
   color: #9d4eff !important;
   text-decoration: underline;
 }
+html, body {
+  background-color: #121212; /* чорний фон */
+  color: #121212;            /* білий текст за замовчуванням */
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}

@@ -1,0 +1,4 @@
+/* Колір фону адмін-панелі */
+html, body {
+  background-color: #f8f9fa; /* це точно збігається з Bootstrap bg-light */
+}

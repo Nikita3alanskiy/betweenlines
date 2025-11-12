@@ -16,36 +16,56 @@ async function loadConcerts() {
     for (const docSnap of snapshot.docs) {
       const concert = docSnap.data();
 
-      // Отримуємо назву локації
+      // Дані локації
       let locationName = "—";
+      let coordinates = null;
       if (concert.locationId) {
         const locDoc = await getDoc(doc(db, "locations", concert.locationId));
-        if (locDoc.exists()) locationName = locDoc.data().name || "—";
+        if (locDoc.exists()) {
+          const locData = locDoc.data();
+          locationName = locData.name || "—";
+          coordinates = locData.coordinates || null;
+        }
       }
 
+      // Дата та час
       const dateObj = new Date(concert.dateTime);
-      const day = dateObj.toLocaleDateString("uk-UA", { day: "2-digit" });
-      const month = dateObj.toLocaleDateString("uk-UA", { month: "short" }).toUpperCase();
-      const timeStr = dateObj.toLocaleTimeString("uk-UA", { hour: "2-digit", minute: "2-digit" });
+      const day = dateObj.getDate().toString().padStart(2, '0');
+      const monthNames = ['СІЧ','ЛЮТ','БЕР','КВІТ','ТРАВ','ЧЕРВ','ЛИП','СЕРП','ВЕР','ЖОВТ','ЛИСТ','ГРУД'];
+      const month = monthNames[dateObj.getMonth()];
+      const timeStr = dateObj.toLocaleTimeString("uk-UA", { hour: '2-digit', minute: '2-digit' });
 
-      const concertItem = document.createElement("div");
-      concertItem.className = "concert-item";
+      // Картка концерту
+      const concertCard = document.createElement("div");
+      concertCard.className = "concert-card mb-4 bg-white";
 
-      concertItem.innerHTML = `
-        <div class="concert-date">
-          <div class="day">${day}</div>
-          <div class="month">${month}</div>
-        </div>
+      // Посилання на карту, якщо координати є
+      let mapLink = '';
+      if (coordinates) {
+        mapLink = `<button class="btn btn-sm btn-outline-primary mt-2 view-map-btn">Переглянути на карті</button>`;
+      }
+
+      concertCard.innerHTML = `
         <img src="${concert.posterUrl || '../img/logo.png'}" alt="${concert.title}" class="concert-poster">
         <div class="concert-info">
           <h3 class="concert-title">${concert.title}</h3>
           <p class="concert-location">📍 ${locationName}</p>
-          <p class="concert-description">${concert.description}</p>
+          <p class="concert-date-time">📅 ${day} ${month} | 🕒 ${timeStr}</p>
+          <p class="concert-description">${concert.description || ''}</p>
+          ${mapLink}
         </div>
-        <div class="concert-time">${timeStr}</div>
       `;
 
-      concertsContainer.appendChild(concertItem);
+      // Кнопка перегляду на карті
+      const mapBtn = concertCard.querySelector(".view-map-btn");
+      if (mapBtn && coordinates) {
+        mapBtn.addEventListener("click", () => {
+          const [lat, lng] = coordinates.split(",").map(c => c.trim());
+          window.open(`https://www.google.com/maps?q=${lat},${lng}`, "_blank");
+        });
+      }
+
+      concertsContainer.appendChild(concertCard);
     }
 
   } catch (error) {
