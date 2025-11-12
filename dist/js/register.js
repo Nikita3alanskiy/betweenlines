@@ -63,11 +63,11 @@ window.addEventListener("DOMContentLoaded", function() {
         await setDoc(userRef, userData);
       }
 
-      console.log("✅ Дані збережено у Firestore!");
-      showAlert("✅ Реєстрація успішна! Перенаправляємо...", "success");
+      console.log("Дані збережено у Firestore!");
+      showAlert("Реєстрація успішна! Перенаправляємо...", "success");
 
     } catch (error) {
-      console.error("❌ Помилка:", error);
+      console.error("Помилка:", error);
 
       if (error.code === "auth/email-already-in-use") {
         try {

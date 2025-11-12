@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicEventHub - Деталі концерту</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/event_cart.css">
+</head>
+<body>
+<!-- Навігація -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="home.html">
+      <img src="../img/logo.png" alt="Between Lines Logo" class="navbar-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="home.html">Головна</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Концерти</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Інструменти</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Локації</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">Про нас</a></li>
+      </ul>
+      <div class="navbar-nav">
+        <a class="nav-link btn-login" href="../html/login.html">Увійти</a>
+        <a class="nav-link" href="../html/registration.html">Реєстрація</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Деталі концерту -->
+<section class="events-section py-5">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col">
+        <h2 class="section-title text-center" style="color:#8a2be2">Деталі концерту</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div id="concertDetails" class="events-list text-center">
+          <p class="text-center text-muted">Завантаження концерту...</p>
+        </div>
+        <div class="text-center mt-4">
+          <a href="home.html" class="btn btn-primary">Назад на головну</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Футер -->
+<footer class="custom-footer py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Between Lines</h5>
+        <p>Ваш надійний партнер у світі музичних подій</p>
+      </div>
+      <div class="col-md-3">
+        <h6>Контакти</h6>
+        <ul class="list-unstyled">
+          <li>📧 betweenLines@gmail.com</li>
+          <li>📞 +380 (63) 664-89-79</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>&copy; 2025 Between Lines. Всі права захищені.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- JS для підвантаження деталей концерту -->
+<script type="module" src="../js/event.js"></script>
+</body>
+</html>
